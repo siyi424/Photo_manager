@@ -1,0 +1,23 @@
+/* styles.css */
+body {
+  background-color: #fff;
+  }
+  
+#main {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  height: 100vh;
+  margin: 0;
+  }
+  
+#left {
+  grid-column: 1 / 2;
+}
+
+#middle {
+  grid-column: 2 / 3;
+}
+
+#right {
+  grid-column: 3 / 4;
+}

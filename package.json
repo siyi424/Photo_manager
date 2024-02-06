@@ -1,0 +1,18 @@
+{
+  "name": "photo_manager_software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/src/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "electron ./src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "siyi424",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.2.1"
+  }
+}
