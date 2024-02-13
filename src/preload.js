@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
-const { getAllFilesFromFolder } = require('./script/FileTree');
+const { ReadDir } = require('./script/ReadDir');
 const { saveJSon } = require('./script/SaveJSon');
 
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -8,7 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 });
 
 contextBridge.exposeInMainWorld('filetree', {
-    getFileTree: (path) => getAllFilesFromFolder(path),
+    readDir: (path, formats) => ReadDir(path, formats),
     saveJSon: (data, path) => saveJSon(data, path),
 });
 

@@ -5,10 +5,11 @@ btn.addEventListener('click', async () => {
   const filePath = await window.electronAPI.openFile()
   const savePath = await window.electronAPI.getDirname() + '/' + 'root.json'
 
-  filePathElement.innerText = filePath
-  result = window.filetree.getFileTree(filePath);
+  filePathElement.innerText = filePath;
+  formats = ['JPG', 'NEF'];
+  result = window.filetree.readDir(filePath, formats);
   // save result to JSON
-
-  window.filetree.saveJSon(result, savePath);
   console.log(result);
+  window.filetree.saveJSon(result, savePath);
+
 })
