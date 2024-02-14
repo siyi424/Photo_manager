@@ -21,3 +21,14 @@ body {
 #right {
   grid-column: 3 / 4;
 }
+
+.subFolders {
+  list-style-type: none;
+  transition: transform 0.3s;
+}
+.subFolders:hover {
+  transform: scale(1.3);
+}
+.subFolders:focus {
+  background-color: antiquewhite;
+}

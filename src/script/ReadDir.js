@@ -1,10 +1,10 @@
 function ReadDir(dir, formats) {
     const fs = require('fs');
     const fsPromise = fs.promises;
-    let resList = [];
 
+    return fsPromise.readdir(dir, 'utf8').then(folders => {
+        let resList = [];
 
-    fsPromise.readdir(dir, 'utf8').then(folders => {
         folders.forEach(folder => {
             resList.push(folder);
         });
@@ -22,7 +22,10 @@ function ReadDir(dir, formats) {
         console.log('resList: ', resList);
         return resList;
     });
+    
 };
+
+
 
 module.exports = {
     ReadDir

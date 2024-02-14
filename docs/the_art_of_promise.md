@@ -8,3 +8,5 @@ to conclude:
 with status parameters, promise could handle asynchronous operations; 
 with .then() methos, promise could use result.
 ```
+
+PS: use `innerHTML` to add new element, then you can easily check whether it is loaded.
