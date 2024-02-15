@@ -1,21 +1,22 @@
 const btn = document.getElementById('btn');
 const filePathElement = document.getElementById('rootPath');
+let root;
 
 btn.addEventListener('click', async () => {
-  const filePath = await window.electronAPI.openFile();
+  root = await window.electronAPI.openFile();
   //add root path display
-  filePathElement.innerText = filePath;
+  filePathElement.innerText = root;
 
   //get subfiles names
   const formats = null;
-  const subfolders_pr = window.common.readDir(filePath, formats);
+  const subfolders_pr = window.common.readDir(root, formats);
 
   //list names as <li>
   subfolders_pr.then((result) => {
     console.log('renderer:', result);
-    const folders_ul = document.getElementById('folders');
+    const div_sidebar = document.getElementById('sidebar');
     const className = 'subFolders';
-    window.common.listItem(result, folders_ul, className);
+    window.common.listItem(result, div_sidebar, className);
   }); 
 });
 
@@ -26,6 +27,8 @@ window.common.waitForElm('.subFolders').then((elm) => {
   li_folders.forEach(item => {
     item.addEventListener('click', (event) => {
       const folderName = event.target.textContent; 
+      
+      // const img_pr = window.common.readDir()
       console.log(folderName);
     })
   });
