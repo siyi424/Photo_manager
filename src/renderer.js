@@ -31,20 +31,18 @@ window.common.waitForElm('.subFolders').then((elm) => {
       const folderName = event.target.textContent; 
 
       const path = root + '/' + folderName;
-      const formats = ['JPG', 'NEF'];
+      const formats = ['JPG'];
       
       const img_pr = window.common.readDir(path, formats);
       img_pr.then((imgs) => {
         //get imgs full path
         const fullPaths = imgs.map(str => path + '/' + str);
-
         const div_imgs = document.getElementById('div-imgs');
-        const className = 'imgs';
-        window.common.listImages(fullPaths, div_imgs, className);
+
+        window.common.listImages(fullPaths, div_imgs);
       });
       console.log(folderName);
     })
   });
-
 })
 

@@ -1,7 +1,7 @@
-function listImages(items, container, className) {
+function listImages(items, container) {
     let result = '';
     items.forEach(item => {
-        result += `<img src=${item}> alt=${item} class=${className}>`;
+        result += `<img src=${item}>`;
     });
 
     container.innerHTML = result;

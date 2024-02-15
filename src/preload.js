@@ -13,7 +13,7 @@ contextBridge.exposeInMainWorld('common', {
     readDir: (path, formats) => ReadDir(path, formats),
     waitForElm: (selector) => waitForElm(selector),
     listItem: (items, container, className) => listItem(items, container, className),
-    listImages: (items, container, className) => listImages(items, container, className),
+    listImages: (items, container) => listImages(items, container),
 });
 
 console.log('preload.js loaded');

@@ -32,3 +32,10 @@ body {
 .subFolders:focus {
   background-color: antiquewhite;
 }
+
+img {
+  height: 200px;
+}
+img:hover {
+ opacity: .5;
+}
