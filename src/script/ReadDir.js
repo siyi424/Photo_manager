@@ -2,7 +2,16 @@ function ReadDir(dir, formats) {
     const fs = require('fs');
     const fsPromise = fs.promises;
 
-    return fsPromise.readdir(dir, 'utf8').then(folders => {
+    //check this path is dir or file
+    const stats = fs.statSync(dir);
+    let proms;
+    if (stats.isFile()) {
+        proms = fsPromise.readFile(dir, 'utf-8');
+    } else {
+        proms = fsPromise.readdir(dir, 'utf8');
+    };
+
+    return proms.then(folders => {
         let resList = [];
 
         folders.forEach(folder => {

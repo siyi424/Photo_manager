@@ -1,9 +1,8 @@
 const btn = document.getElementById('btn');
 const filePathElement = document.getElementById('rootPath');
-let root;
 
 btn.addEventListener('click', async () => {
-  root = await window.electronAPI.openFile();
+  const root = await window.electronAPI.openFile();
   //add root path display
   filePathElement.innerText = root;
 
@@ -20,15 +19,29 @@ btn.addEventListener('click', async () => {
   }); 
 });
 
+
 window.common.waitForElm('.subFolders').then((elm) => {
   console.log('subFolders are loaded successfully!');
   const li_folders = document.querySelectorAll('.subFolders');
   console.log('render: ', li_folders);
   li_folders.forEach(item => {
     item.addEventListener('click', (event) => {
+      //get root 
+      const root = filePathElement.innerText;
       const folderName = event.target.textContent; 
+
+      const path = root + '/' + folderName;
+      const formats = ['JPG', 'NEF'];
       
-      // const img_pr = window.common.readDir()
+      const img_pr = window.common.readDir(path, formats);
+      img_pr.then((imgs) => {
+        //get imgs full path
+        const fullPaths = imgs.map(str => path + '/' + str);
+
+        const div_imgs = document.getElementById('div-imgs');
+        const className = 'imgs';
+        window.common.listImages(fullPaths, div_imgs, className);
+      });
       console.log(folderName);
     })
   });
