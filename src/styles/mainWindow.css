@@ -34,8 +34,30 @@ body {
 }
 
 img {
-  height: 200px;
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
 }
+/* Flashing */
 img:hover {
- opacity: .5;
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
 }
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
