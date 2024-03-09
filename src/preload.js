@@ -5,6 +5,7 @@ const { listItem } = require('./script/ListItem');
 const { waitForElm } = require('./script/WaitForElm');
 const {listImages} = require('./script/ListImages');
 const path = require('node:path');
+const { execSync } = require('child_process');
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -17,8 +18,8 @@ contextBridge.exposeInMainWorld('common', {
     waitForElm: (selector) => waitForElm(selector),
     listItem: (items, container, className) => listItem(items, container, className),
     listImages: (items, container) => listImages(items, container),
-
-});
+    execSync: (command) => execSync(command)
+  });
 
 contextBridge.exposeInMainWorld('sharp', {
   runsharp: (imgpath,thumbpath, width, height) => {

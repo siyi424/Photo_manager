@@ -1,5 +1,6 @@
 const btn = document.getElementById('btn');
 const filePathElement = document.getElementById('rootPath');
+const btn_ps = document.getElementById('openPS');
 
 
 btn.addEventListener('click', async () => {
@@ -19,6 +20,7 @@ btn.addEventListener('click', async () => {
     window.common.listItem(result, div_sidebar, className);
   });
 });
+
 
 
 window.common.waitForElm('.subFolders').then((elm) => {
@@ -62,5 +64,21 @@ window.common.waitForElm('.subFolders').then((elm) => {
       })
     });
   })
-})
+});
+
+btn_ps.addEventListener('click', async () => {
+  //get the stored nef names
+  const info = '"D:\\Photography-All\\20240302上海植物园\\DSC_3362.NEF"';
+  //command
+  const cmd_pre = 'cmd.exe /c start photoshop ';
+  const cmd = cmd_pre + info;
+
+  console.log('cmd: ', cmd);
+  try {
+    window.common.execSync(cmd);
+    console.log('Opened Photoshop with files: ${info}');
+  } catch (error) {
+    console.log('Error opening Photoshop with files');
+  }
+});
 
