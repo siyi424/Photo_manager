@@ -36,6 +36,11 @@ app.whenReady().then(() => {
       if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
   })
+
+
+//get img.src from render process & store the img.
+
+
   
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()

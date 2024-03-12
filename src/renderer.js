@@ -47,7 +47,7 @@ window.common.waitForElm('.subFolders').then((elm) => {
         //   // const tb_path = tmp + '/' + 'thumb_' + img;
         //   const org_path = path + '/' + img;
 
-          // console.log('thumbnails');
+        // console.log('thumbnails');
         //   window.sharp.runsharp(org_path, tb_path, 200, 200).then(() => {
         //     console.log('Thumbnail generated successfully');
         //   }).catch(err => {
@@ -65,6 +65,7 @@ window.common.waitForElm('.subFolders').then((elm) => {
 
         console.log(folderName);
       }).then(() => {
+        let rawPaths = [];
         //add eventlistener to <img>
         const Images = document.querySelectorAll("img");
         console.log('display Images: ', Images);
@@ -72,13 +73,27 @@ window.common.waitForElm('.subFolders').then((elm) => {
           img.addEventListener('click', () => {
             console.log('clicked img src is: ', img.src);
             //send img.src to main process
-            window.electronAPI.getImgSrc(img.src);
-      
+            // window.electronAPI.getImgSrc(img.src);
+
+            //deal the img.src & store the NEF filePath 
+            let newPath = img.src.replace(/\.JPG$/, '.NEF');
+            console.log('new rawPath: ', newPath);
+            const index = rawPaths.indexOf(newPath);
+            if (index !== -1) {
+              // del
+              rawPaths.splice(index, 1);
+              img.style.opacity = '1';
+            } else {
+              // add
+              rawPaths.push(newPath);
+              img.style.opacity = '0.3'
+            };
+
+            console.log('rawPaths is: ', rawPaths);
           })
         });
       }
-      )
-
+      );
 
     });
   })
@@ -92,6 +107,10 @@ window.common.waitForElm('.subFolders').then((elm) => {
 //button: open Photoshop
 btn_ps.addEventListener('click', async () => {
   //get the stored nef names
+  //bcz I always use wsl2 to write and test the code. 
+  //Here I have to change linux filepath format in wsl2 into the filepath in windows format
+  
+
   const info = '"D:\\Photography-All\\20240302上海植物园\\DSC_3362.NEF"';
   //command
   const cmd_pre = 'cmd.exe /c start photoshop ';
