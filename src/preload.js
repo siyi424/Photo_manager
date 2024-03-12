@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const { ReadDir } = require('./script/ReadDir');
 const { listItem } = require('./script/ListItem');
 const { waitForElm } = require('./script/WaitForElm');
@@ -10,7 +10,8 @@ const { execSync } = require('child_process');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openFile: () => ipcRenderer.invoke('dialog:openFile'),
-  getRootDir: () => {return path.resolve(process.cwd())},
+  //get current working folder path
+  // getRootDir: () => {return path.resolve(process.cwd())},
 });
 
 contextBridge.exposeInMainWorld('common', {
@@ -21,11 +22,10 @@ contextBridge.exposeInMainWorld('common', {
     execSync: (command) => execSync(command)
   });
 
-contextBridge.exposeInMainWorld('sharp', {
-  runsharp: (imgpath,thumbpath, width, height) => {
-    return sharp(imgpath).resize(width, height, {fit: 'fill'}).toFile(thumbpath)
-  }
-
-});
+// contextBridge.exposeInMainWorld('sharp', {
+//   runsharp: (imgpath,thumbpath, width, height) => {
+//     return sharp(imgpath).resize(width, height, {fit: 'fill'}).toFile(thumbpath)
+//   }
+// });
 
 console.log('preload.js loaded');

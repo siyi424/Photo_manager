@@ -1,7 +1,7 @@
 {
   "name": "photo_manager_software",
   "version": "1.0.0",
-  "description": "",
+  "description": "hello, this is a photo manage software.",
   "main": "/src/index.html",
   "directories": {
     "doc": "docs"
@@ -13,6 +13,6 @@
   "author": "siyi424",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^28.2.1"
+    "electron": "^28.2.3"
   }
 }

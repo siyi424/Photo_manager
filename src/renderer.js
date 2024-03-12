@@ -22,7 +22,8 @@ btn.addEventListener('click', async () => {
 });
 
 
-
+// if want to create thumbnails,
+// install sharp library && uncomment the commented lines
 window.common.waitForElm('.subFolders').then((elm) => {
   console.log('subFolders are loaded successfully!');
 
@@ -40,26 +41,28 @@ window.common.waitForElm('.subFolders').then((elm) => {
 
       img_pr.then((imgs) => {
         //create thumbnails
-        const tmp = window.electronAPI.getRootDir() + '/tmp';
+        // const tmp = window.electronAPI.getRootDir() + '/tmp';
 
-        imgs.forEach(img => {
-          const tb_path = tmp + '/' + 'thumb_' + img;
-          const org_path = path + '/' + img;
+        // imgs.forEach(img => {
+        //   // const tb_path = tmp + '/' + 'thumb_' + img;
+        //   const org_path = path + '/' + img;
 
-          console.log('thumbnails');
-          window.sharp.runsharp(org_path, tb_path, 200, 200).then(() => {
-            console.log('Thumbnail generated successfully');
-          }).catch(err => {
-            console.error('Error generating thumbnail:', err);
-          });
-        });
+          // console.log('thumbnails');
+        //   window.sharp.runsharp(org_path, tb_path, 200, 200).then(() => {
+        //     console.log('Thumbnail generated successfully');
+        //   }).catch(err => {
+        //     console.error('Error generating thumbnail:', err);
+        //   });
+        // });
 
         //display thumbnails
-        const thumbPaths = imgs.map(str => tmp + '/' + 'thumb_' + str);
-        console.log('tb: ', thumbPaths);
+        // const thumbPaths = imgs.map(str => tmp + '/' + 'thumb_' + str);
+        // console.log('tb: ', thumbPaths);
+
+        const imgPaths = imgs.map(str => path + '/' + str);
         const div_imgs = document.getElementById('div-imgs');
-        window.common.listImages(thumbPaths, div_imgs);
-        
+        window.common.listImages(imgPaths, div_imgs);
+
         console.log(folderName);
       })
     });
