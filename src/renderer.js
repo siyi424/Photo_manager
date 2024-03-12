@@ -36,7 +36,10 @@ window.common.waitForElm('.subFolders').then((elm) => {
       const folderName = event.target.textContent;
 
       const path = root + '/' + folderName;
+
+      //change formats
       const formats = ['JPG'];
+
       const img_pr = window.common.readDir(path, formats);
 
       img_pr.then((imgs) => {
@@ -64,7 +67,8 @@ window.common.waitForElm('.subFolders').then((elm) => {
         window.common.listImages(imgPaths, div_imgs);
 
         console.log(folderName);
-      }).then(() => {
+        return path;
+      }).then((fp) => {
         let rawPaths = [];
         //add eventlistener to <img>
         const Images = document.querySelectorAll("img");
@@ -87,13 +91,45 @@ window.common.waitForElm('.subFolders').then((elm) => {
               // add
               rawPaths.push(newPath);
               img.style.opacity = '0.3'
-            };
-
+            }
             console.log('rawPaths is: ', rawPaths);
           })
         });
+        return [fp, rawPaths];
       }
-      );
+      ).then(([fp, Paths]) => {
+        //button: open Photoshop
+        
+        btn_ps.addEventListener('click', async () => {
+          //get the stored NEF names
+          //bcz I always use wsl2 to write and test the code. 
+          //Here I have to change linux filepath format in wsl2 into the filepath in windows format
+          console.log('rawPaths last edition: ', Paths);
+          console.log('fp: ', fp);
+          let nefPaths = Paths.map(str => str.replace('file:///mnt/d/', 'D:/'));
+          nefPaths = nefPaths.map(str => str.replace(/\//g, '\\'));
+          nefPaths = nefPaths.map(str => decodeURIComponent(str));
+          console.log('NEF Paths: ', nefPaths);
+
+          // const info = '"D:\\Photography-All\\20240302上海植物园\\DSC_3362.NEF"';
+
+          let info = '';
+          nefPaths.forEach(str => {
+            info += '"' + str + '" ';
+          });
+          //command
+          const cmd_pre = 'cmd.exe /c start photoshop ';
+          const cmd = cmd_pre + info;
+
+          console.log('cmd: ', cmd);
+          try {
+            window.common.execSync(cmd);
+            console.log('Opened Photoshop with files: ${info}');
+          } catch (error) {
+            console.log('Error opening Photoshop with files');
+          }
+        });
+      })
 
     });
   })
@@ -104,24 +140,5 @@ window.common.waitForElm('.subFolders').then((elm) => {
 
 
 
-//button: open Photoshop
-btn_ps.addEventListener('click', async () => {
-  //get the stored nef names
-  //bcz I always use wsl2 to write and test the code. 
-  //Here I have to change linux filepath format in wsl2 into the filepath in windows format
-  
 
-  const info = '"D:\\Photography-All\\20240302上海植物园\\DSC_3362.NEF"';
-  //command
-  const cmd_pre = 'cmd.exe /c start photoshop ';
-  const cmd = cmd_pre + info;
-
-  console.log('cmd: ', cmd);
-  try {
-    window.common.execSync(cmd);
-    console.log('Opened Photoshop with files: ${info}');
-  } catch (error) {
-    console.log('Error opening Photoshop with files');
-  }
-});
 
