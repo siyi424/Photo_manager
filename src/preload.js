@@ -10,6 +10,7 @@ const { execSync } = require('child_process');
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openFile: () => ipcRenderer.invoke('dialog:openFile'),
+  getImgSrc: (src) => ipcRenderer.send('getImgSrc', src),
   //get current working folder path
   // getRootDir: () => {return path.resolve(process.cwd())},
 });

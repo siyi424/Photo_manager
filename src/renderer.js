@@ -64,10 +64,29 @@ window.common.waitForElm('.subFolders').then((elm) => {
         window.common.listImages(imgPaths, div_imgs);
 
         console.log(folderName);
-      })
+      }).then(() => {
+        //add eventlistener to <img>
+        const Images = document.querySelectorAll("img");
+        console.log('display Images: ', Images);
+        Images.forEach(img => {
+          img.addEventListener('click', () => {
+            console.log('clicked img src is: ', img.src);
+            //send img.src to main process
+            window.electronAPI.getImgSrc(img.src);
+      
+          })
+        });
+      }
+      )
+
+
     });
   })
 });
+
+
+
+
 
 
 //button: open Photoshop
