@@ -69,6 +69,8 @@ window.common.waitForElm('.subFolders').then((elm) => {
   })
 });
 
+
+//button: open Photoshop
 btn_ps.addEventListener('click', async () => {
   //get the stored nef names
   const info = '"D:\\Photography-All\\20240302上海植物园\\DSC_3362.NEF"';
