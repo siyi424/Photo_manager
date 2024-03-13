@@ -1,6 +1,8 @@
 /* styles.css */
 body {
   background-color: #fff;
+  margin: 0;
+  padding: 0;
   }
   
 #main {
@@ -8,33 +10,133 @@ body {
   grid-template-columns: 1fr 5fr 1fr;
   height: 100vh;
   margin: 0;
+  padding: 0;
   }
   
 #left {
+  background-color: #f7f7f7;
   grid-column: 1 / 2;
 }
 
+#svg-f {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+/* btn */
+#btn, #openPS {
+  width: 100%;
+  align-items: center;
+  background-color: #fff;
+  /* border-radius: 12px; */
+  box-shadow: transparent 0 0 0 3px,rgba(197, 160, 160, 0.1) 0 6px 20px;
+  box-sizing: border-box;
+  color: #393e46;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#btn:hover {
+  box-shadow: #393e46 0 0 0 3px, transparent 0 0 0 0;
+}
+
+#openPS {
+  background-color: #393e46;
+  color:#f7f7f7;
+}
+
+#openPS:hover {
+  background-color: #f7f7f7;
+  color:#393e46;
+}
+
+
+
+
+#rootInfo {
+  width: 100%;
+  padding-top: 10px;
+  margin: 0;
+  background-color: #fff;
+}
+
+#rootPath {
+  margin: 0;
+  width: 100%;
+  min-height: 50px;
+  padding-left: 30px;
+  padding-top: 20px;
+  font-size: 25px;
+  overflow: auto;
+
+  background-color: #fff;
+  color: #393e46;
+}
+
+#sidebar {
+  padding-top: 15px;
+}
+
+.div-lists {
+  width: 100%;
+  padding: 5px;
+  padding-left: 30px;
+  font-size: 1.3em;
+
+  display: inline-flex;
+  flex-direction: row;
+}
+
+
+.subFolders {
+  display: inline-block;
+  padding: -3px;
+  list-style-type: none;
+  transition: transform 0.3s;
+}
+.div-lists:hover {
+  background-color: #393e46;
+  color: #f7f7f7;
+}
+.subFolders:focus {
+  background-color: #393e46;
+  color: #f7f7f7;
+}
+
+
 #middle {
+  background-color: #fff;
   grid-column: 2 / 3;
 }
 
 #right {
+  background-color: #f7f7f7;
   grid-column: 3 / 4;
+  margin:0;
+  padding: 0;
 }
 
-.subFolders {
-  list-style-type: none;
-  transition: transform 0.3s;
-}
-.subFolders:hover {
-  transform: scale(1.3);
-}
-.subFolders:focus {
-  background-color: antiquewhite;
-}
 
 img {
-  border: 1px solid #ddd; /* Gray border */
+  margin: 0;
   border-radius: 4px;  /* Rounded border */
   padding: 20px; /* Some padding */
 }
@@ -66,3 +168,6 @@ img:hover {
 	transform: scale(1.1);
 }
 
+#svg-ps {
+  margin: 10px;
+}
